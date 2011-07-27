@@ -12,7 +12,7 @@ var TracksForm = {
             $('#'+formId+' input:text:first').focus();
         }
         toggleLink.parent().toggleClass('hide_form');
-    }, 
+    },
     set_project_name: function (name) {
         $('input#todo_project_name').val(name);
     },
@@ -80,7 +80,7 @@ var TracksForm = {
 
         /* submit todo form after entering new todo */
         $("button#todo_new_action_submit").live('click', function (ev) {
-            if ($('input#predecessor_input').val() != "") 
+            if ($('input#predecessor_input').val() != "")
               if (!confirm(i18n['todos.unresolved_dependency']))
                 return false;
             if (TodoItems.askIfNewContextProvided('', this))
@@ -181,12 +181,12 @@ var TracksPages = {
         var flash = $('div#message_holder');
         flash.html("<h4 id=\'flash\' class=\'alert "+type+"\'>"+message+"</h4>");
         flash = $('h4#flash');
-        
+
         fadein_duration = 1500;
         fadeout_duration = 1500;
         show_duration = fade_duration_in_sec*1000 - fadein_duration - fadeout_duration
         if (show_duration < 0)
-          show_duration = 1000;          
+          show_duration = 1000;
         flash.fadeIn(fadein_duration).delay(show_duration).fadeOut(fadeout_duration);
     },
     set_page_badge: function(count) {
@@ -637,6 +637,12 @@ var UsersPage = {
             return false;
         });
 
+    }
+}
+
+var PreferencesPage = {
+    setup_behavior: function() {
+      $( "#tabs" ).tabs();
     }
 }
 
@@ -1237,7 +1243,7 @@ $(document).ready(function() {
     TodoItemsContainer.setup_container_toggles();
 
     /* enable page specific behavior */
-    $([ 'IntegrationsPage', 'NotesPage', 'ProjectListPage', 'ContextListPage',
+    $([ 'PreferencesPage', 'IntegrationsPage', 'NotesPage', 'ProjectListPage', 'ContextListPage',
         'FeedsPage', 'RecurringTodosPage', 'TodoItems', 'TracksPages',
         'TracksForm', 'SearchPage', 'UsersPage' ]).each(function() {
         eval(this+'.setup_behavior();');
